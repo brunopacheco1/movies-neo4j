@@ -1,0 +1,2 @@
+elastic.clustername: docker-cluster
+elastic.index: match-me
