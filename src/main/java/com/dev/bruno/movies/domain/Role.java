@@ -1,11 +1,13 @@
 package com.dev.bruno.movies.domain;
 
-import org.neo4j.ogm.annotation.EndNode;
-import org.neo4j.ogm.annotation.RelationshipEntity;
-import org.neo4j.ogm.annotation.StartNode;
+import org.neo4j.ogm.annotation.*;
 
 @RelationshipEntity(type = "ACTS_IN")
 public class Role {
+
+    @Id
+    @GeneratedValue
+    private Long relationshipId;
 
     @StartNode
     private PublicPerson actor;
@@ -14,6 +16,14 @@ public class Role {
     private Movie movie;
 
     private String name;
+
+    public Long getRelationshipId() {
+        return relationshipId;
+    }
+
+    public void setRelationshipId(Long relationshipId) {
+        this.relationshipId = relationshipId;
+    }
 
     public PublicPerson getActor() {
         return actor;

@@ -27,7 +27,7 @@ public class Application {
 
     @Bean
     public org.neo4j.ogm.config.Configuration configuration() {
-        return new org.neo4j.ogm.config.Configuration.Builder().uri("bolt://localhost").build();
+        return new org.neo4j.ogm.config.Configuration.Builder().credentials("movies", "movies").uri("bolt://localhost").build();
     }
 
     public static void main(String[] args) {

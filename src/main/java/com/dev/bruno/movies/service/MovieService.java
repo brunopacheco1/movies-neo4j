@@ -1,14 +1,35 @@
 package com.dev.bruno.movies.service;
 
 import com.dev.bruno.movies.domain.Movie;
+import com.dev.bruno.movies.repository.MovieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface MovieService {
+@Service
+public class MovieService {
 
-    Movie save(Movie movie);
+    @Autowired
+    private MovieRepository repository;
 
-    void delete(Movie movie);
+    public Movie insert(Movie movie) {
+        return repository.save(movie);
+    }
 
-    Movie findOne(Long id);
+    public void update(Long id, Movie movie) {
+        movie.setId(id);
+        repository.save(movie);
+    }
 
-    Iterable<Movie> findAll();
+    public void delete(Long id) {
+        Movie movie = findOne(id);
+        repository.delete(movie);
+    }
+
+    public Movie findOne(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public Iterable<Movie> findAll() {
+        return repository.findAll();
+    }
 }

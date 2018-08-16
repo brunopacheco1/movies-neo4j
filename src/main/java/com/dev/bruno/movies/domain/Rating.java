@@ -1,11 +1,13 @@
 package com.dev.bruno.movies.domain;
 
-import org.neo4j.ogm.annotation.EndNode;
-import org.neo4j.ogm.annotation.RelationshipEntity;
-import org.neo4j.ogm.annotation.StartNode;
+import org.neo4j.ogm.annotation.*;
 
 @RelationshipEntity(type = "RATED")
 public class Rating {
+
+    @Id
+    @GeneratedValue
+    private Long relationshipId;
 
     @StartNode
     private User user;
@@ -16,6 +18,14 @@ public class Rating {
     private int stars;
 
     private String comment;
+
+    public Long getRelationshipId() {
+        return relationshipId;
+    }
+
+    public void setRelationshipId(Long relationshipId) {
+        this.relationshipId = relationshipId;
+    }
 
     public User getUser() {
         return user;

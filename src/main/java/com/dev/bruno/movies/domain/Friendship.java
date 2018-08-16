@@ -1,13 +1,15 @@
 package com.dev.bruno.movies.domain;
 
-import org.neo4j.ogm.annotation.EndNode;
-import org.neo4j.ogm.annotation.RelationshipEntity;
-import org.neo4j.ogm.annotation.StartNode;
+import org.neo4j.ogm.annotation.*;
 
 import java.time.LocalDateTime;
 
 @RelationshipEntity(type = "IS_FRIEND")
 public class Friendship {
+
+    @Id
+    @GeneratedValue
+    private Long relationshipId;
 
     @StartNode
     private User requestedBy;
@@ -16,6 +18,14 @@ public class Friendship {
     private User acceptedBy;
 
     private LocalDateTime friendshipStartedAt;
+
+    public Long getRelationshipId() {
+        return relationshipId;
+    }
+
+    public void setRelationshipId(Long relationshipId) {
+        this.relationshipId = relationshipId;
+    }
 
     public User getRequestedBy() {
         return requestedBy;

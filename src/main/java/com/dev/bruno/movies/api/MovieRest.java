@@ -17,6 +17,21 @@ public class MovieRest {
         return service.findOne(id);
     }
 
+    @RequestMapping(value = "/movie/{id}", method = RequestMethod.PUT)
+    public void update(@PathVariable(value="id") Long id, @RequestBody Movie movie) {
+        service.update(id, movie);
+    }
+
+    @RequestMapping(value = "/movie", method = RequestMethod.POST)
+    public Movie insert(@RequestBody Movie movie) {
+        return service.insert(movie);
+    }
+
+    @RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable(value="id") Long id) {
+        service.delete(id);
+    }
+
     @RequestMapping(value = "/movie", method = RequestMethod.GET)
     public Iterable<Movie> list() {
         return service.findAll();

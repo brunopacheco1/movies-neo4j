@@ -1,5 +1,7 @@
 package com.dev.bruno.movies.domain;
 
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -9,6 +11,10 @@ import java.util.Set;
 @NodeEntity
 public class PublicPerson extends Person {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private LocalDateTime startedCarreeAt;
 
     @Relationship(type = "ACTS_IN")
@@ -16,6 +22,14 @@ public class PublicPerson extends Person {
 
     @Relationship(type="DIRECTED")
     private Set<Movie> directedMovies;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDateTime getStartedCarreeAt() {
         return startedCarreeAt;
