@@ -1,20 +1,30 @@
 package com.dev.bruno.movies.service;
 
 import com.dev.bruno.movies.domain.User;
+import com.dev.bruno.movies.dto.UserDTO;
 import com.dev.bruno.movies.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService {
 
-    @Autowired
     private UserRepository repository;
 
-    public User insert(User user) {
+    @Autowired
+    public UserService(UserRepository repository) {
+        this.repository = repository;
+    }
+
+    public User insert(UserDTO userDTO) {
+        User user = new User();
+        convertToEntity(user, userDTO);
         return repository.save(user);
     }
 
-    public void update(Long id, User user) {
-        user.setId(id);
+    public void update(Long id, UserDTO userDTO) {
+        User user = findOne(id);
+        convertToEntity(user, userDTO);
         repository.save(user);
     }
 
@@ -29,5 +39,11 @@ public class UserService {
 
     public Iterable<User> findAll() {
         return repository.findAll();
+    }
+
+    private void convertToEntity(User entity, UserDTO dto) {
+        entity.setLogin(dto.getLogin());
+        entity.setPassword(dto.getPassword());
+        entity.setName(dto.getName());
     }
 }

@@ -1,6 +1,7 @@
 package com.dev.bruno.movies.api;
 
 import com.dev.bruno.movies.domain.Movie;
+import com.dev.bruno.movies.dto.MovieDTO;
 import com.dev.bruno.movies.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +19,12 @@ public class MovieRest {
     }
 
     @RequestMapping(value = "/movie/{id}", method = RequestMethod.PUT)
-    public void update(@PathVariable(value="id") Long id, @RequestBody Movie movie) {
+    public void update(@PathVariable(value="id") Long id, @RequestBody MovieDTO movie) {
         service.update(id, movie);
     }
 
     @RequestMapping(value = "/movie", method = RequestMethod.POST)
-    public Movie insert(@RequestBody Movie movie) {
+    public Movie insert(@RequestBody MovieDTO movie) {
         return service.insert(movie);
     }
 

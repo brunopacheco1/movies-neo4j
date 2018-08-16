@@ -1,9 +1,7 @@
 # Spring properties
 spring:
   application:
-    name: match-me-find-users
-
-spring.profiles.active: dev
+    name: movies-neo4j
 
 # HTTP Server
 server:
